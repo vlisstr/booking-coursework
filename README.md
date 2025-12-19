@@ -39,3 +39,24 @@
 ```sql
 INSERT INTO bookings (user_id, resource_id, booking_date)
 VALUES (1, 1, CURRENT_DATE);
+
+Отримання списку бронювань (JOIN)
+SELECT
+  u.full_name,
+  r.name,
+  b.booking_date
+FROM bookings b
+JOIN users u ON b.user_id = u.id
+JOIN resources r ON b.resource_id = r.id;
+
+Підрахунок кількості бронювань (GROUP BY)
+SELECT
+  u.full_name,
+  COUNT(b.id) AS bookings_count
+FROM users u
+LEFT JOIN bookings b ON b.user_id = u.id
+GROUP BY u.full_name;
+
+
+
+
